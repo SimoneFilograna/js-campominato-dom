@@ -36,10 +36,10 @@ function gridSquare(squareNum) {
             newSquare.classList.toggle("bg-success")
 
             //colore applicato solo se i coincide col numero della bomba
-            for (let j = 0; j < 16; j++) {
+            for (let j = 0; j < bArray.length; j++) {
                 if (bArray[j] === (i + 1)) {
                     newSquare.classList.toggle("bg-danger")
-                    
+
                 }
             }
         })
