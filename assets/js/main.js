@@ -2,6 +2,7 @@
 
 const gridContainer = document.querySelector(".grid-container");
 const btnPlay = document.getElementById("btn-play");
+let playable = true;
 
 //set event on button
 btnPlay.addEventListener("click", myClick);
@@ -9,6 +10,7 @@ btnPlay.addEventListener("click", myClick);
 //buttonfunction
 function myClick(){   
     printSquare(gridContainer, gridSquare(100));
+    playable = true;
 
 }
 
@@ -31,14 +33,19 @@ function gridSquare(squareNum) {
     for (let i = 0; i < squareNum; i++) {
         const newSquare = singleSquare(1 + i);
         gridArray.push(newSquare);
+
+        //event listener click square
         newSquare.addEventListener("click", function () {
+            if (playable === false){
+                return
+            }
             //colore applicato ad ogni click
             newSquare.classList.toggle("bg-success")
-
             //colore applicato solo se i coincide col numero della bomba
             for (let j = 0; j < bArray.length; j++) {
                 if (bArray[j] === (i + 1)) {
                     newSquare.classList.toggle("bg-danger")
+                    playable = false;
 
                 }
             }
