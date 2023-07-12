@@ -24,6 +24,7 @@ function singleSquare(squareContent){
 //create grid
 function gridSquare(squareNum) {
     const gridArray = [];
+    //array generato randomicamente dalla funzione
     let bArray = randomNumber(16);
     console.log(bArray)
 
@@ -31,12 +32,14 @@ function gridSquare(squareNum) {
         const newSquare = singleSquare(1 + i);
         gridArray.push(newSquare);
         newSquare.addEventListener("click", function () {
+            //colore applicato ad ogni click
             newSquare.classList.toggle("bg-success")
 
-            //controllo bombe
+            //colore applicato solo se i coincide col numero della bomba
             for (let j = 0; j < 16; j++) {
                 if (bArray[j] === (i + 1)) {
                     newSquare.classList.toggle("bg-danger")
+                    
                 }
             }
         })
