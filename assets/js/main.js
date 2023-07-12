@@ -9,8 +9,8 @@ btnPlay.addEventListener("click", myClick);
 
 //buttonfunction
 function myClick(){   
-    printSquare(gridContainer, gridSquare(100));
     playable = true;
+    printSquare(gridContainer, gridSquare(100));
 
 }
 
@@ -46,7 +46,7 @@ function gridSquare(squareNum) {
                 if (bArray[j] === (i + 1)) {
                     newSquare.classList.toggle("bg-danger")
                     playable = false;
-
+                    alert("HAI PERSO")
                 }
             }
         })
