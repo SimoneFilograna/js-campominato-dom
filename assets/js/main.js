@@ -8,7 +8,8 @@ btnPlay.addEventListener("click", myClick);
 
 //buttonfunction
 function myClick(){   
-    printSquare(gridContainer, gridSquare(100))
+    printSquare(gridContainer, gridSquare(100));
+
 }
 
 //create singleSquare
@@ -21,16 +22,25 @@ function singleSquare(squareContent){
 
 
 //create grid
-function gridSquare(squareNum){
+function gridSquare(squareNum) {
     const gridArray = [];
-    for(let i = 0; i < squareNum; i++){
-        const newSquare= singleSquare(1 + i);
+    let bArray = randomNumber(16);
+    console.log(bArray)
+
+    for (let i = 0; i < squareNum; i++) {
+        const newSquare = singleSquare(1 + i);
         gridArray.push(newSquare);
-        newSquare.addEventListener("click", function(){
-            newSquare.classList.toggle("bg-success");
-            console.log(`Hai colorato la cella numero ${1 + i}`)
+        newSquare.addEventListener("click", function () {
+            newSquare.classList.toggle("bg-success")
+
+            //controllo bombe
+            for (let j = 0; j < 16; j++) {
+                if (bArray[j] === (i + 1)) {
+                    newSquare.classList.toggle("bg-danger")
+                }
+            }
         })
-    }      
+    }
     return gridArray;
 }
 
@@ -41,4 +51,19 @@ function printSquare(container, squareList){
     for(let i = 0; i < squareList.length ; i++) {
         container.append(squareList[i]);
     }
+}
+
+//function random Number/ bomb
+
+function randomNumber(nrNumber){
+    let bombArray = [];
+    for(let i = 0; i < nrNumber; i++){
+        let genNumber = (Math.floor(Math.random() * 100) + 1);
+        if (bombArray.indexOf(genNumber) === -1){
+            bombArray.push(genNumber);
+        } else {
+            i--
+        }
+    }
+    return bombArray;
 }
